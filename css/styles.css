@@ -1,0 +1,750 @@
+/* =========================================
+   1. VARIABLES Y CONFIGURACIÓN BASE (CYBER-ATHLETE)
+   ========================================= */
+:root {
+    /* --- PALETA DE COLORES --- */
+    --primary-bg: #050a14;       /* Negro Azulado Profundo */
+    --secondary-bg: #111b29;     /* Fondo Secundario */
+    --accent-color: #00f260;     /* Menta Eléctrico */
+    --accent-secondary: #0575e6; /* Azul Royal */
+    
+    /* Textos */
+    --text-main: #e0e6ed;
+    --text-muted: #94a3b8;
+    
+    /* Efectos */
+    --glass-bg: rgba(5, 10, 20, 0.9);
+    --nav-height: 80px;
+    
+    /* Fuentes */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--primary-bg);
+    color: var(--text-main);
+    line-height: 1.6;
+
+    /* --- FONDO TECH (PUNTITOS) --- */
+    background-image: 
+        radial-gradient(var(--secondary-bg) 15%, transparent 16%),
+        radial-gradient(var(--secondary-bg) 15%, transparent 16%);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+}
+
+/* Títulos Generales */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+/* Texto con degradado Neon */
+.text-gradient {
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   2. NAVBAR (Menú de Navegación)
+   ========================================= */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 242, 96, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    letter-spacing: 1px;
+}
+
+.logo a {
+    color: inherit; /* Hereda el color Menta del padre */
+    text-decoration: none; /* Sin subrayado */
+    transition: text-shadow 0.3s ease;
+}
+
+.logo a:hover {
+    text-shadow: 0 0 10px var(--accent-color); /* Un brillo extra al pasar el mouse */
+}
+
+/* --- ESTILOS DEL MENÚ (Escritorio) --- */
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    position: relative;
+}
+
+/* Efecto hover subrayado animado */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.btn-highlight {
+    border: 1px solid var(--accent-color);
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: var(--accent-color) !important;
+}
+
+.btn-highlight:hover {
+    background: rgba(0, 242, 96, 0.1);
+}
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* =========================================
+   3. HERO SECTION (SPLIT LAYOUT - NUEVO)
+   ========================================= */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--nav-height);
+    background: radial-gradient(circle at center, rgba(5, 117, 230, 0.15) 0%, rgba(5, 10, 20, 0.95) 70%);
+}
+
+/* Contenedor Grid para partir la pantalla */
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 50% Texto - 50% Foto */
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Columna Izquierda (Texto) */
+.hero-text-col {
+    text-align: left;
+}
+
+.hero-text-col h1 {
+    font-size: 2rem;
+    margin: 10px 0;
+    line-height: 1.2;
+    color: var(--text-main);
+}
+
+/* El texto que cambia (Typing Effect) */
+.typing-effect {
+    color: var(--accent-color);
+    font-weight: 800;
+}
+
+.hero-text-col h2 {
+    font-size: 1.2rem;
+    color: var(--accent-secondary);
+    font-family: 'Fira Code', monospace;
+    margin-bottom: 10px;
+}
+
+.hero-description {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    max-width: 90%;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start; /* Alineados a la izq */
+}
+
+/* Botones Neon */
+.btn {
+    padding: 12px 28px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    transition: all 0.3s ease;
+}
+
+.btn.primary {
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(0, 242, 96, 0.2);
+}
+
+.btn.primary:hover {
+    background: var(--accent-color);
+    color: var(--primary-bg);
+    box-shadow: 0 0 25px rgba(0, 242, 96, 0.6);
+    transform: translateY(-3px);
+}
+
+.btn.secondary {
+    background: transparent;
+    border: 2px solid var(--text-main);
+    color: var(--text-main);
+}
+
+.btn.secondary:hover {
+    background: var(--text-main);
+    color: var(--primary-bg);
+}
+
+/* Columna Derecha (Imagen) */
+.hero-img-col {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-img-col img {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(5, 117, 230, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+    margin-top: 80px;
+}
+
+/* Animación de flotar */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* =========================================
+   4. RESPONSIVE / MÓVIL (CORREGIDO + HERO ADAPTADO)
+   ========================================= */
+@media (max-width: 1024px) { 
+    /* --- MENÚ LATERAL --- */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--secondary-bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 999;
+        box-shadow: -5px 0 25px rgba(0,0,0,0.8);
+        border-left: 2px solid var(--accent-color);
+        padding-top: 60px;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .hamburger-menu {
+        display: block;
+        z-index: 1001;
+        font-size: 2rem;
+        color: var(--accent-color);
+        /* Manteniendo la seguridad que agregamos antes */
+        border: 2px solid var(--accent-color);
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+    
+    /* --- ADAPTACIÓN DEL HERO AL CELULAR --- */
+    .hero-container {
+        grid-template-columns: 1fr; /* Una sola columna */
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .hero-text-col {
+        text-align: center;
+        order: 2; /* Texto abajo */
+    }
+
+    .hero-img-col {
+        order: 1; /* Imagen arriba */
+        margin-bottom: 20px;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .hero-img-col img {
+        max-width: 300px;
+    }
+    
+    .hero-text-col h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero-description {
+        margin: 0 auto 30px auto; /* Centrar párrafo */
+    }
+}
+
+/* =========================================
+   5. SECCIONES COMUNES
+   ========================================= */
+section {
+    padding: 100px 20px;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: var(--text-main);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* =========================================
+   6. GRID DE TARJETAS
+   ========================================= */
+.cards-grid, .projects-grid, .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px -10px rgba(0, 242, 96, 0.15);
+}
+
+.card h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.download-area {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn-download {
+    display: inline-block;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.btn-download:hover {
+    background: rgba(0, 242, 96, 0.1);
+    box-shadow: 0 0 15px rgba(0, 242, 96, 0.2);
+}
+
+/* =========================================
+   7. ATHLETICS
+   ========================================= */
+.athletics-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    border-radius: 12px;
+    border: 2px solid var(--secondary-bg);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-weight: bold;
+    background: #000;
+}
+
+.video-placeholder i {
+    color: var(--accent-secondary);
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.video-container:hover .video-placeholder i {
+    transform: scale(1.2);
+    color: var(--accent-color);
+}
+
+.ncsa-badge {
+    background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-secondary);
+}
+
+.ncsa-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--accent-secondary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(5, 117, 230, 0.3);
+}
+
+.ncsa-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(5, 117, 230, 0.5);
+}
+
+@media (max-width: 768px) {
+    .athletics-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   8. ABOUT SECTION
+   ========================================= */
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr; 
+    gap: 50px;
+    align-items: center;
+}
+
+.about-image {
+    position: relative;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+    filter: grayscale(100%) contrast(1.1); 
+    transition: filter 0.3s ease;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.about-image:hover img {
+    filter: none;
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover::after {
+    transform: translate(-8px, -8px);
+}
+
+.stats-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.stats-list li {
+    position: relative;
+    padding-left: 20px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.stats-list li::before {
+    content: '▹'; 
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .stats-list {
+        text-align: left;
+    }
+}
+
+/* =========================================
+   9. TESTIMONIALS (3D NEON FLIP CARDS) - LA JOYA
+   ========================================= */
+
+/* El contenedor base de la tarjeta */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 350px; /* Altura fija necesaria para el giro */
+    perspective: 1000px; /* Da la profundidad 3D */
+    cursor: pointer;
+}
+
+/* El contenedor interno que se mueve */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s; /* Duración del giro */
+    transform-style: preserve-3d;
+}
+
+/* LA ACCIÓN: Al pasar el mouse, girar 180 grados */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Configuración común de ambas caras */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Oculta la cara de atrás */
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* --- CARA DE FRENTE --- */
+.flip-card-front {
+    background-color: var(--secondary-bg);
+    border-bottom: 4px solid var(--accent-color); /* Borde neon abajo */
+}
+
+.card-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-color); /* Avatar brillante */
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.role {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.neon-line {
+    width: 50px;
+    height: 2px;
+    background: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+    margin: 10px 0;
+}
+
+/* --- CARA DE ATRÁS (El Testimonio) --- */
+.flip-card-back {
+    background: linear-gradient(135deg, var(--secondary-bg) 0%, #000 100%);
+    color: var(--text-main);
+    transform: rotateY(180deg); /* Ya está girada para esperar el flip */
+    border: 2px solid var(--accent-color); /* Borde completo neon */
+    box-shadow: 0 0 20px rgba(0, 242, 96, 0.2) inset; /* Brillo interno */
+}
+
+.quote-icon {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.flip-card-back p {
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.stars {
+    color: gold;
+    margin-top: 15px;
+    letter-spacing: 5px;
+}
+
+/* =========================================
+   10. CONTACTO Y FOOTER
+   ========================================= */
+footer {
+    background: #02060d;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    display: inline-block;
+    color: var(--text-muted);
+    font-size: 1.6rem;
+    margin: 0 15px;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+    transform: translateY(-5px) scale(1.1);
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: 'Fira Code', monospace;
+}
