@@ -20,6 +20,52 @@ document.addEventListener('DOMContentLoaded', () => {
         loop: true      // Que se repita infinitamente
     });
 
+    // ... (Debajo de tu código de Typed.js y AOS) ...
+
+    // 4. INICIALIZAR SWIPER (Versión Pulida y Senior) --- ACTUALIZADO ---
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+
+        // --- SOLUCIÓN PUNTO 2 (POCAS REFERENCIAS) ---
+        // Cambiamos LOOP a FALSE. Ya no necesitamos duplicar tarjetas en el HTML.
+        // (Vuelvan a dejar solo las 3 originales en index.html)
+        loop: false, 
+        
+        // Obligamos a que empiece en la segunda tarjeta (índice 1) para que esté centrada
+        initialSlide: 1, 
+
+        // --- SOLUCIÓN PUNTO 1 (ROTACIÓN ESTILO "REAL CAROUSEL") ---
+        coverflowEffect: {
+            rotate: 50,         // Aumentamos el ángulo de giro (antes 35)
+            stretch: -50,       // Solapamos un poco las tarjetas (-50) para efecto curvo
+            depth: 200,         // Más profundidad 3D (antes 100)
+            modifier: 1,
+            slideShadows: true, // Sombras realistas en las laterales
+        },
+
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+
+        // --- SOLUCIÓN PUNTO 3 (PAUSA AL LEER) ---
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            // *** ESTA ES LA MAGIA ***
+            // Detiene el carrusel cuando el mouse entra a leer/voltear
+            pauseOnMouseEnter: true, 
+        }
+    });
+
     // --- LÓGICA DEL MENÚ HAMBURGUESA ---
     const hamburger = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');

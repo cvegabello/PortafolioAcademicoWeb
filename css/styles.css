@@ -1,21 +1,33 @@
 /* =========================================
-   1. VARIABLES Y CONFIGURACIÓN BASE (CYBER-ATHLETE)
+   1. VARIABLES Y CONFIGURACIÓN BASE (TEMA: DARK ORANGE)
    ========================================= */
 :root {
-    /* --- PALETA DE COLORES --- */
-    --primary-bg: #050a14;       /* Negro Azulado Profundo */
-    --secondary-bg: #111b29;     /* Fondo Secundario */
-    --accent-color: #00f260;     /* Menta Eléctrico */
-    --accent-secondary: #0575e6; /* Azul Royal */
+    /* --- PALETA DE COLORES: NEGRO + NARANJA NEÓN --- */
+    
+    /* Fondo Principal: Negro Puro (Elegancia total) */
+    --primary-bg: #000000;
+    
+    /* Fondo Secundario: Gris muy oscuro (Para tarjetas) */
+    --secondary-bg: #0f0f0f;
+    
+    /* Acento Principal: Naranja Neón (High Voltage) */
+    /* Este color es el que va a estallar en la pantalla */
+    --accent-color: #ff5e00; 
+    
+    /* Acento Secundario: Azul Royal (Se mantiene para contraste complementario) */
+    --accent-secondary: #0044ff;
     
     /* Textos */
-    --text-main: #e0e6ed;
-    --text-muted: #94a3b8;
+    --text-main: #ffffff;       /* Blanco puro para máximo contraste */
+    --text-muted: #a0a0a0;      /* Gris medio */
     
     /* Efectos */
-    --glass-bg: rgba(5, 10, 20, 0.9);
+    --glass-bg: rgba(0, 0, 0, 0.95); /* Vidrio negro */
     --nav-height: 80px;
     
+    /* Imagen de Fondo (La Opción 2 ganadora) */
+    --hero-bg-image: url('../assets/img/BackGround-hero.jpeg');
+
     /* Fuentes */
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Open Sans', sans-serif;
@@ -176,7 +188,16 @@ ul {
     align-items: center;
     justify-content: center;
     padding-top: var(--nav-height);
-    background: radial-gradient(circle at center, rgba(5, 117, 230, 0.15) 0%, rgba(5, 10, 20, 0.95) 70%);
+
+    /* --- CAMBIO DE LOOK --- */
+    /* Degradado NEGRO (antes era azul oscuro) sobre la foto */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), 
+                var(--hero-bg-image);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* Contenedor Grid para partir la pantalla */
@@ -613,107 +634,174 @@ section {
     }
 }
 
+
 /* =========================================
-   9. TESTIMONIALS (3D NEON FLIP CARDS) - LA JOYA
+   9. TESTIMONIALS & SWIPER (TURBO NEON 3D)
    ========================================= */
 
-/* El contenedor base de la tarjeta */
-.flip-card {
-    background-color: transparent;
+/* Espaciado del carrusel */
+.swiper {
     width: 100%;
-    height: 350px; /* Altura fija necesaria para el giro */
-    perspective: 1000px; /* Da la profundidad 3D */
+    padding-top: 60px;
+    padding-bottom: 80px; /* Más espacio abajo para el reflejo */
+    perspective: 1000px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px; 
+    height: 450px; /* Un poco más altas */
+}
+
+/* --- ESTRUCTURA FLIP CARD --- */
+.flip-card {
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
     cursor: pointer;
 }
 
-/* El contenedor interno que se mueve */
 .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s; /* Duración del giro */
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
 }
 
-/* LA ACCIÓN: Al pasar el mouse, girar 180 grados */
+/* GIRO */
 .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
 }
 
-/* Configuración común de ambas caras */
+/* --- CARAS (CONFIGURACIÓN COMÚN) --- */
 .flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Oculta la cara de atrás */
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 15px;
-    padding: 30px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.05);
+    padding: 20px;
+    
+    /* FONDO NEGRO PURO para contraste */
+    background: #050505; 
+    
+    /* EL BORDE NEÓN (Truco del borde transparente) */
+    border: 3px solid transparent; /* Espacio para el degradado */
+    background-clip: padding-box; /* El fondo negro se queda adentro */
 }
 
-/* --- CARA DE FRENTE --- */
-.flip-card-front {
-    background-color: var(--secondary-bg);
-    border-bottom: 4px solid var(--accent-color); /* Borde neon abajo */
+/* --- EFECTO DEGRADADO EN LOS BORDES (TIPO IMAGE_45D456) --- */
+/* Usamos un pseudo-elemento detrás para crear el borde degradado y el brillo */
+
+.flip-card-front::after, .flip-card-back::after {
+    content: '';
+    position: absolute;
+    top: -5px; bottom: -5px;
+    left: -5px; right: -5px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary), var(--accent-color));
+    z-index: -1; /* Se va para atrás */
+    border-radius: 24px; /* Un poco más que la tarjeta */
+    
+    /* ESTO ES LO QUE HACE QUE BRILLE (La Sombrita) */
+    box-shadow: 0 0 20px rgba(255, 94, 0, 0.5); 
+    transition: all 0.3s ease;
 }
 
+/* Al pasar el mouse, el brillo explota */
+.flip-card:hover .flip-card-front::after {
+    box-shadow: 0 0 40px var(--accent-color), 0 0 80px var(--accent-secondary);
+    filter: blur(2px); /* Suaviza el borde para que parezca luz */
+}
+
+/* --- CONTENIDO INTERNO --- */
 .card-avatar {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    border: 3px solid var(--accent-color);
-    box-shadow: 0 0 15px var(--accent-color); /* Avatar brillante */
+    border: 3px solid #fff; /* Borde blanco para separar de la foto */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
     object-fit: cover;
     margin-bottom: 20px;
+    z-index: 2;
+}
+
+.flip-card-front h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 5px rgba(0,0,0,1);
+    z-index: 2;
 }
 
 .role {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 15px;
+    color: var(--accent-color); /* Naranja */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    z-index: 2;
 }
 
-.neon-line {
-    width: 50px;
-    height: 2px;
-    background: var(--accent-color);
-    box-shadow: 0 0 10px var(--accent-color);
-    margin: 10px 0;
+.neon-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    margin: 20px 0;
+    opacity: 0.3;
 }
 
-/* --- CARA DE ATRÁS (El Testimonio) --- */
+/* --- CARA DE ATRÁS --- */
 .flip-card-back {
-    background: linear-gradient(135deg, var(--secondary-bg) 0%, #000 100%);
-    color: var(--text-main);
-    transform: rotateY(180deg); /* Ya está girada para esperar el flip */
-    border: 2px solid var(--accent-color); /* Borde completo neon */
-    box-shadow: 0 0 20px rgba(0, 242, 96, 0.2) inset; /* Brillo interno */
+    transform: rotateY(180deg);
+    /* Fondo un poquito diferente para distinguir */
+    background: linear-gradient(to bottom, #000, #111);
+}
+
+/* El borde de atrás también debe ser neón pero quizás invertido */
+.flip-card-back::after {
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-color));
 }
 
 .quote-icon {
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin-bottom: 15px;
+    font-size: 3rem;
+    background: -webkit-linear-gradient(var(--accent-color), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
 }
 
 .flip-card-back p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #ddd;
     font-style: italic;
-    font-size: 1rem;
-    line-height: 1.6;
 }
 
 .stars {
-    color: gold;
+    color: #ffcc00;
     margin-top: 15px;
-    letter-spacing: 5px;
+    font-size: 1.2rem;
 }
+
+.author-sign {
+    margin-top: auto;
+    color: var(--accent-secondary);
+    font-family: monospace;
+}
+
+/* --- CONTROLES SWIPER --- */
+.swiper-pagination-bullet { background: #666; }
+.swiper-pagination-bullet-active { background: var(--accent-color); }
+.swiper-button-next, .swiper-button-prev { color: var(--accent-color); }
+
 
 /* =========================================
    10. CONTACTO Y FOOTER

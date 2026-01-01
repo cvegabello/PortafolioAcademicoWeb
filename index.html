@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -178,40 +179,72 @@
     <section id="testimonials" data-aos="fade-up">
         <div class="container">
             <h2 class="section-title">References</h2>
-            <div class="testimonials-grid">
-                <div class="flip-card" data-aos="flip-left">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="assets/img/coach.jpg" alt="Coach" class="card-avatar">
-                            <h3>Coach John Doe</h3>
-                            <p class="role">Varsity Head Coach</p>
-                            <div class="neon-line"></div>
-                            <small>Hover to read</small>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="flip-card card-glow">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="glow-border"></div> <img src="assets/img/coach.jpg" alt="Coach" class="card-avatar">
+                                        <h3>Coach John Doe</h3>
+                                        <p class="role">Varsity Head Coach</p>
+                                    <div class="neon-divider"></div>
+                                    <small class="hint-text"><i class="fas fa-sync-alt"></i> Tap to Flip</small>
+                                </div>
+                                <div class="flip-card-back">
+                                    <i class="fas fa-quote-left quote-icon"></i>
+                                    <p>"Santiago is the first on the field and the last to leave. A true leader by example."</p>
+                                    <div class="stars">★★★★★</div>
+                                    <small class="author-sign">- J. Doe</small>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flip-card-back">
-                            <i class="fas fa-quote-left quote-icon"></i>
-                            <p>"Santiago is the first on the field and the last to leave. A true leader by example with incredible vision."</p>
-                            <div class="stars">★★★★★</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="flip-card card-glow">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="glow-border"></div>
+                                        <img src="assets/img/teacher.jpg" alt="Teacher" class="card-avatar">
+                                        <h3>Mrs. Sarah Smith</h3>
+                                        <p class="role">AP Computer Science</p>
+                                    <div class="neon-divider"></div>
+                                    <small class="hint-text"><i class="fas fa-sync-alt"></i> Tap to Flip</small>
+                                </div>
+                                <div class="flip-card-back">
+                                    <i class="fas fa-quote-left quote-icon"></i>
+                                    <p>"One of the brightest analytical minds. His code is as clean as his game."</p>
+                                    <div class="stars">★★★★★</div>
+                                    <small class="author-sign">- S. Smith</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="flip-card card-glow">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="glow-border"></div>
+                                        <img src="assets/img/profile-hero.png" alt="Teammate" class="card-avatar">
+                                        <h3>Team Captain</h3>
+                                        <p class="role">Club Soccer</p>
+                                    <div class="neon-divider"></div>
+                                    <small class="hint-text"><i class="fas fa-sync-alt"></i> Tap to Flip</small>
+                                </div>
+                                <div class="flip-card-back">
+                                    <i class="fas fa-quote-left quote-icon"></i>
+                                    <p>"Playing alongside Santiago elevates the whole team's performance."</p>
+                                    <div class="stars">★★★★★</div>
+                                    <small class="author-sign">- Captain</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="flip-card" data-aos="flip-left" data-aos-delay="200">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="assets/img/teacher.jpg" alt="Teacher" class="card-avatar">
-                            <h3>Mrs. Sarah Smith</h3>
-                            <p class="role">AP Computer Science</p>
-                            <div class="neon-line"></div>
-                            <small>Hover to read</small>
-                        </div>
-                        <div class="flip-card-back">
-                            <i class="fas fa-quote-left quote-icon"></i>
-                            <p>"One of the brightest analytical minds. His code is as clean as his game. Truly honor roll material."</p>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                    </div>
-                </div>
+                
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
     </section>
@@ -253,6 +286,7 @@
 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/app.js"></script>
     
 </body>
