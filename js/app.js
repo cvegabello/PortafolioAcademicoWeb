@@ -66,6 +66,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 5. INICIALIZAR SWIPER DE PROYECTOS (PORTFOLIO)
+    var portfolioSwiper = new Swiper(".portfolioSwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        loop: false, // Pocos proyectos al inicio, mejor sin loop
+        initialSlide: 1, // Empieza en el del medio
+
+        coverflowEffect: {
+            rotate: 40,        // Un poco menos de rotación para ver mejor las fotos
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+        
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        
+        // Pausar si el reclutador quiere ver el código
+        autoplay: {
+            delay: 4000, // Un poquito más lento para leer
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        }
+    });
+
+    // 6. CONTROL INTELIGENTE DE LAS TARJETAS (CLICK + AUTO-RESET)
+    const cards = document.querySelectorAll('.flip-card');
+
+    cards.forEach(card => {
+        // A. Al hacer CLICK: Voltear (Toggle)
+        card.addEventListener('click', (e) => {
+            // Si da click en un botón de enlace, no voltear
+            if (e.target.closest('a')) return;
+            
+            card.classList.toggle('is-flipped');
+        });
+
+        // B. Al SACAR EL MOUSE (Mouse Leave): Volver al frente automáticamente
+        card.addEventListener('mouseleave', () => {
+            // Si la tarjeta está volteada, quitarle la clase para que se cierre
+            if (card.classList.contains('is-flipped')) {
+                card.classList.remove('is-flipped');
+            }
+        });
+    });
+
     // --- LÓGICA DEL MENÚ HAMBURGUESA ---
     const hamburger = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');
@@ -88,3 +143,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+/* CONTROL DEL MENÚ MÓVIL */
+function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('active');
+}
+
+/* INICIALIZAR GALERÍA */
+    var gallerySwiper = new Swiper(".gallery-swiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: { delay: 3500, disableOnInteraction: false },
+        pagination: { el: ".swiper-pagination", clickable: true },
+        breakpoints: {
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+        },
+    });
+
+    /* =========================================
+   LÓGICA DEL LIGHTBOX (GALERÍA AMPLIADA)
+   ========================================= */
+
+// 1. Seleccionar elementos
+const modal = document.getElementById("galleryModal");
+const modalImg = document.getElementById("lightboxImg");
+const captionText = document.getElementById("lightboxCaption");
+
+// 2. Seleccionar todas las tarjetas de la galería
+const galleryCards = document.querySelectorAll('.gallery-card');
+
+galleryCards.forEach(card => {
+    card.addEventListener('click', function() {
+        // Mostrar el modal
+        modal.style.display = "block";
+        
+        // Pequeño timeout para que la transición de opacidad funcione
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+
+        // Buscar la imagen dentro de la tarjeta clickeada
+        const img = this.querySelector('img');
+        modalImg.src = img.src; // Usar la misma foto
+
+        // Buscar el texto (título) para ponerlo abajo
+        const title = this.querySelector('h3').innerText;
+        const sub = this.querySelector('p').innerText;
+        captionText.innerHTML = `<span style="color:var(--accent-color)">${title}</span> - ${sub}`;
+    });
+});
+
+// 3. Función para Cerrar
+function closeLightbox() {
+    modal.classList.remove('active');
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 300); // Esperar a que termine la animación
+}

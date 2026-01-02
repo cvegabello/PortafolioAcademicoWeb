@@ -17,39 +17,107 @@
 </head>
 <body>
 
-    <header id="main-header">
-        <nav class="navbar">
-            <div class="logo">
-                <a href="#hero">&lt;[Initials]/&gt;</a>
-            </div> 
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-content">
             
-            <button class="hamburger-menu" aria-label="Toggle Menu">
-                <i class="fas fa-bars"></i>
+            <button class="close-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-times"></i>
             </button>
 
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">Profile</a></li>
-                <li><a href="#academics">Academics</a></li>
-                <li><a href="#athletics">Athletics</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#testimonials">References</a></li>
-                <li><a href="#contact" class="btn-highlight">Get in Touch</a></li>
+            <div class="menu-profile-header">
+                <div class="profile-img-container">
+                    <img src="assets/img/profile-hero.jpg" alt="Santiago" class="menu-avatar">
+                </div>
+                <h3>Santiago Vega</h3>
+                <span class="role-badge">Student-Athlete</span>
+            </div>
+
+            <ul class="mobile-menu-list">
+                <li>
+                    <a href="#hero" onclick="toggleMenu()">
+                        <div class="menu-icon-box"><i class="fas fa-home"></i></div>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#about" onclick="toggleMenu()">
+                        <div class="menu-icon-box"><i class="fas fa-user"></i></div>
+                        <span>About Me</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#academics" onclick="toggleMenu()">
+                        <div class="menu-icon-box"><i class="fas fa-graduation-cap"></i></div>
+                        <span>Academics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#athletics" onclick="toggleMenu()">
+                        <div class="menu-icon-box"><i class="fas fa-futbol"></i></div>
+                        <span>Athletics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#portfolio" onclick="toggleMenu()">
+                        <div class="menu-icon-box"><i class="fas fa-code"></i></div>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#gallery" onclick="toggleMenu()">
+                        <div class="menu-icon-box"><i class="fas fa-camera-retro"></i></div>
+                        <span>Moments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" onclick="toggleMenu()">
+                        <div class="menu-icon-box"><i class="fas fa-paper-plane"></i></div>
+                        <span>Get In Touch</span>
+                    </a>
+                </li>
             </ul>
-        </nav>
-    </header>
+
+        </div>
+    </div>
+
+    <header id="main-header">
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#hero">&lt;[SV]/&gt;</a> </div> 
+        
+        <button class="hamburger-menu" aria-label="Toggle Menu" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">Profile</a></li>
+            <li><a href="#academics">Academics</a></li>
+            <li><a href="#athletics">Athletics</a></li>
+            <li><a href="#portfolio">Projects</a></li>
+            <li><a href="#testimonials">References</a></li>
+            <li><a href="#gallery">Moments</a></li>
+            <li><a href="#contact" class="btn-highlight">Get in Touch</a></li>
+        </ul>
+    </nav>
+</header>
 
     <section id="hero" data-aos="fade-up">
         <div class="hero-container"> 
             <div class="hero-text-col" data-aos="fade-right">
-                <h2>The Student-Athlete Code</h2>
+                
+                <h3 class="hero-greeting">Hello, I am</h3>
+
+                <h1 class="hero-name">Santiago <span class="text-highlight">Vega</span></h1>
+
+                <h2 class="hero-subtitle">The Student-Athlete Code</h2>
             
-                <h1>I am a <span class="typing-effect"></span></h1>
+                <h2 class="hero-typed">I am a <span class="typing-effect"></span></h2>
             
                 <p class="hero-description">
                     Building logic on the field and in the IDE. 
                     Focused on Computer Science & Competitive Soccer.
-                 </p>
+                </p>
             
                 <div class="hero-buttons">
                     <a href="#academics" class="btn primary">View Academics</a>
@@ -65,65 +133,127 @@
 
     <section id="about" data-aos="fade-up">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-grid">
-                <div class="about-image">
-                    <img src="assets/img/profile.jpg" alt="Profile Picture">
+            <h2 class="section-title text-center">Profile & Bio</h2>
+
+            <div class="about-wrapper">
+                
+                <div class="about-image-col" data-aos="fade-right">
+                    <div class="cyber-frame">
+                        <img src="assets/img/profile-hero.jpg" alt="Santiago Vega" class="about-img">
+                        <span class="corner-top-left"></span>
+                        <span class="corner-bottom-right"></span>
+                    </div>
                 </div>
-                <div class="about-text">
-                    <p>
-                        Highly disciplined Student-Athlete at <strong>[High School Name]</strong>, class of 202X. 
-                        My goal is to pursue a degree in <strong>Computer Science</strong> while competing at the collegiate level.
-                        I apply the same strategic thinking on the soccer field as I do when solving complex algorithms.
-                    </p>
-                    <ul class="stats-list">
-                        <li><strong>GPA:</strong> [3.8 / 4.0]</li>
-                        <li><strong>Grad Year:</strong> 202X</li>
-                        <li><strong>Position:</strong> Midfield / Forward</li>
-                        <li><strong>Location:</strong> [City, State]</li>
-                        <li><strong>Languages:</strong> English (Fluent), Spanish (Native)</li>
-                    </ul>
+
+                <div class="about-text-col" data-aos="fade-left">
+                    <div class="bio-panel glass-effect">
+                        <h3 class="bio-greeting">Who is <span class="text-neon">Santiago?</span></h3>
+                        
+                        <p class="bio-intro">
+                            I am a high-performance Student-Athlete focused on the intersection of 
+                            <strong>Technology</strong> and <strong>Sports Strategy</strong>.
+                        </p>
+                        
+                        <p class="bio-body">
+                            Just like in soccer, coding requires vision, quick decision-making, and teamwork. 
+                            My goal is to leverage data analytics and software development to solve complex problems, 
+                            whether it's optimizing a midfield transition or debugging a full-stack application.
+                        </p>
+
+                        <div class="bio-stats-grid">
+                            <div class="bio-stat-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bogotá, COL</span>
+                            </div>
+                            <div class="bio-stat-item">
+                                <i class="fas fa-birthday-cake"></i>
+                                <span>17 Years Old</span>
+                            </div>
+                            <div class="bio-stat-item">
+                                <i class="fas fa-futbol"></i>
+                                <span>Midfielder (CAM)</span>
+                            </div>
+                            <div class="bio-stat-item">
+                                <i class="fas fa-language"></i>
+                                <span>Eng (C1) / Spa (Nat)</span>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <section id="academics" data-aos="fade-up">
         <div class="container">
-            <h2 class="section-title">Academic Record</h2>
-            <div class="cards-grid">
-                <article class="card">
-                    <h3><i class="fas fa-graduation-cap"></i> Honors & APs</h3>
-                    <p>
-                        AP Computer Science A<br>
-                        AP Calculus BC<br>
-                        Honors Physics<br>
-                        AP Spanish Literature
-                    </p>
-                </article>
-                <article class="card">
-                    <h3><i class="fas fa-trophy"></i> Awards</h3>
-                    <p>
-                        National Honor Society Member<br>
-                        Principal's List (2022-2024)<br>
-                        Math Olympiad Finalist
-                    </p>
-                </article>
-                <article class="card">
-                    <h3><i class="fas fa-code"></i> Skills</h3>
-                    <p>
-                        Java / Python<br>
-                        HTML5 / CSS3 / JS<br>
-                        Data Structures<br>
-                        Financial Math
-                    </p>
-                </article>
+            
+            <h2 class="section-title" style="text-align: center;">Academic Record</h2>
+            
+            <div class="academic-grid">
+                
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-content">
+                        <div class="stat-icon glow-blue"><i class="fas fa-book-open"></i></div>
+                        <div class="stat-info">
+                            <h3>3.8</h3>
+                            <p>Cumulative GPA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-content">
+                        <div class="stat-icon glow-orange"><i class="fas fa-pen-fancy"></i></div>
+                        <div class="stat-info">
+                            <h3>1250</h3>
+                            <p>SAT Score</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-content">
+                        <div class="stat-icon glow-blue"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="stat-info">
+                            <h3>2025</h3>
+                            <p>Graduation Year</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-content">
+                        <div class="stat-icon glow-orange"><i class="fas fa-laptop-code"></i></div>
+                        <div class="stat-info">
+                            <h3 style="font-size: 1.8rem;">CompSci</h3>
+                            <p>Intended Major</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="stat-content">
+                        <div class="stat-icon glow-blue"><i class="fas fa-code"></i></div>
+                        <div class="stat-info">
+                            <h3 style="font-size: 1.5rem;">AP CS A</h3>
+                            <p>Relevant Course</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="download-area">
-                <a href="assets/resume.pdf" target="_blank" class="btn-download">
-                    <i class="fas fa-file-pdf"></i> Download Official Transcript & Resume
+
+            <div class="academic-actions" data-aos="fade-up" data-aos-delay="600">
+                <a href="assets/docs/resume.pdf" target="_blank" class="btn-neon-outline">
+                    <i class="fas fa-file-download"></i> Download Resume
+                </a>
+                <a href="assets/docs/transcripts.pdf" target="_blank" class="btn-neon-outline">
+                    <i class="fas fa-file-pdf"></i> View Transcripts
                 </a>
             </div>
+
         </div>
     </section>
 
@@ -155,23 +285,142 @@
 
     <section id="portfolio" data-aos="fade-up">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <article class="card project-card">
-                    <h3>Student Portfolio Web</h3>
-                    <p>A fully responsive SPA built with Semantic HTML5 and Modern CSS3 (Flexbox/Grid). No frameworks used.</p>
-                    <a href="#" style="color: var(--secondary-color); font-weight: bold;">View Code <i class="fab fa-github"></i></a>
-                </article>
-                <article class="card project-card">
-                    <h3>Financial Calculator</h3>
-                    <p>Python script to calculate compound interest and investment returns over time.</p>
-                    <a href="#" style="color: var(--secondary-color); font-weight: bold;">View Code <i class="fab fa-github"></i></a>
-                </article>
-                <article class="card project-card">
-                    <h3>Soccer Stats Tracker</h3>
-                    <p>Java application using OOP principles to track player performance per season.</p>
-                    <a href="#" style="color: var(--secondary-color); font-weight: bold;">View Code <i class="fab fa-github"></i></a>
-                </article>
+            <h2 class="section-title">My Projects</h2>
+
+            <div class="swiper portfolioSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="flip-card card-glow">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front project-front">
+                                    <div class="glow-border"></div>
+                                    
+                                    <img src="assets/img/image_455095.jpg" alt="Project 1" class="project-img">
+                                    
+                                    <h3>Soccer Analytics AI</h3>
+                                    
+                                    <div class="tech-stack">
+            
+                                        <span class="badge icon-badge" title="Python">
+                                            <i class="fab fa-python"></i>
+                                        </span>
+
+                                        <span class="badge icon-badge" title="JavaScript">
+                                            <i class="fab fa-js"></i>
+                                        </span>
+
+                                        <span class="badge icon-badge" title="HTML5">
+                                            <i class="fab fa-html5"></i>
+                                        </span>
+
+                                        <span class="badge icon-badge" title="CSS3">
+                                            <i class="fab fa-css3-alt"></i>
+                                        </span>
+
+                                        <span class="badge icon-badge" title="React">
+                                            <i class="fab fa-react"></i>
+                                        </span>
+
+                                        <span class="badge icon-badge" title="Database">
+                                            <i class="fas fa-database"></i>
+                                        </span>
+
+                                        <span class="badge icon-badge" title="AI / Bot">
+                                            <i class="fas fa-robot"></i>
+                                        </span>
+
+                                    </div>
+
+                                    <div class="neon-divider"></div>
+                                    <small class="hint-text"><i class="fas fa-hand-pointer"></i> Tap to Flip</small>
+                                </div>
+
+                                <div class="flip-card-back project-back">
+                                    <h3>About the Project</h3>
+                                    <p>"An algorithm that tracks player movement and calculates possession statistics in real-time video."</p>
+                                    
+                                    <div class="project-actions">
+                                        <a href="#" class="btn-neon-sm">
+                                            <i class="fab fa-github"></i> Code
+                                        </a>
+                                        <a href="#" class="btn-neon-sm btn-outline">
+                                            <i class="fas fa-play"></i> Demo
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="flip-card card-glow">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front project-front">
+                                    <div class="glow-border"></div>
+                                    <img src="assets/img/image_455431.jpg" alt="Project 2" class="project-img">
+                                    <h3>Team Management App</h3>
+                                    <div class="tech-stack">
+                                        <span class="badge icon-badge" title="JavaScript">
+                                            <i class="fab fa-js"></i>
+                                        </span>
+
+                                        <span class="badge icon-badge" title="HTML5">
+                                            <i class="fab fa-html5"></i>
+                                        </span>
+
+                                        <span class="badge icon-badge" title="CSS3">
+                                            <i class="fab fa-css3-alt"></i>
+                                        </span>
+                                    </div>
+                                    <div class="neon-divider"></div>
+                                    <small class="hint-text"><i class="fas fa-hand-pointer"></i> Tap to Flip</small>
+                                </div>
+                                <div class="flip-card-back project-back">
+                                    <h3>About the Project</h3>
+                                    <p>"A web application for coaches to schedule training sessions and track player attendance."</p>
+                                    <div class="project-actions">
+                                        <a href="#" class="btn-neon-sm"><i class="fab fa-github"></i> Code</a>
+                                        <a href="#" class="btn-neon-sm btn-outline"><i class="fas fa-play"></i> Demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="flip-card card-glow">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front project-front">
+                                    <div class="glow-border"></div>
+                                    <img src="assets/img/image_453e67.jpg" alt="Project 3" class="project-img">
+                                    <h3>Grade Calculator</h3>
+                                    <div class="tech-stack">
+                                        <span class="badge icon-badge" title="Python">
+                                            <i class="fab fa-python"></i>
+                                        </span>
+                                        <span class="badge icon-badge" title="AI / Bot">
+                                            <i class="fas fa-robot"></i>
+                                        </span>
+                                    </div>
+                                    <div class="neon-divider"></div>
+                                    <small class="hint-text"><i class="fas fa-hand-pointer"></i> Tap to Flip</small>
+                                </div>
+                                <div class="flip-card-back project-back">
+                                    <h3>About the Project</h3>
+                                    <p>"Automated script to calculate GPA projections based on current semester performance."</p>
+                                    <div class="project-actions">
+                                        <a href="#" class="btn-neon-sm"><i class="fab fa-github"></i> Code</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
     </section>
@@ -249,40 +498,152 @@
         </div>
     </section>
 
-    <section id="contact" data-aos="fade-up"> <div class="container">
+    <section id="gallery" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title text-center">Moments & Milestones</h2>
+            
+            <div class="swiper gallery-swiper">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <div class="gallery-img-box">
+                                <img src="assets/img/gallery-1.jpg" alt="Award">
+                                <div class="overlay-gradient"></div>
+                            </div>
+                            <div class="gallery-caption">
+                                <h3>MVP Award</h3>
+                                <p>Regional Tournament 2023</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <div class="gallery-img-box">
+                                <img src="assets/img/gallery-2.jpg" alt="Volunteering">
+                                <div class="overlay-gradient"></div>
+                            </div>
+                            <div class="gallery-caption">
+                                <h3>Community</h3>
+                                <p>Teaching Kids to Code</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <div class="gallery-img-box">
+                                <img src="assets/img/gallery-3.jpg" alt="Team">
+                                <div class="overlay-gradient"></div>
+                            </div>
+                            <div class="gallery-caption">
+                                <h3>State Champs</h3>
+                                <p>Varsity Soccer Team</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <div class="gallery-img-box">
+                                <img src="assets/img/gallery-4.jpg" alt="Family">
+                                <div class="overlay-gradient"></div>
+                            </div>
+                            <div class="gallery-caption">
+                                <h3>Support System</h3>
+                                <p>Family & Mentors</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" data-aos="fade-up">
+        <div class="container">
             <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-wrapper" style="max-width: 600px; margin: 0 auto;">
+            
+            <div class="contact-wrapper">
                 
-                <form action="#" method="POST" class="contact-form">
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <input type="text" name="name" placeholder="Coach / Recruiter Name" required 
-                               style="width: 100%; padding: 15px; background: #112240; border: 1px solid #233554; color: white; border-radius: 4px;">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Let's Team Up</h3>
+                    <p>
+                        Whether it's for university recruitment, a coding project, 
+                        or just to talk soccer strategy. I'm ready for the next challenge.
+                    </p>
+                    
+                    <div class="info-item">
+                        <div class="icon-box">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span>santiago.vega@gmail.com</span>
                     </div>
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <input type="email" name="email" placeholder="Email Address" required 
-                               style="width: 100%; padding: 15px; background: #112240; border: 1px solid #233554; color: white; border-radius: 4px;">
+                    
+                    <div class="info-item">
+                        <div class="icon-box">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <span>Bogotá, Colombia</span>
                     </div>
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <textarea name="message" rows="5" placeholder="Message regarding recruitment or academics..." required 
-                                  style="width: 100%; padding: 15px; background: #112240; border: 1px solid #233554; color: white; border-radius: 4px;"></textarea>
+
+                    <div class="social-links">
+                        <a href="#" class="social-btn"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
                     </div>
-                    <button type="submit" class="btn primary" style="width: 100%;">Send Message</button>
-                </form>
+                </div>
+
+                <div class="contact-form-col" data-aos="fade-left">
+                    <form class="black-ops-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" class="form-input" required placeholder=" ">
+                                <label class="form-label">Your Name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-input" required placeholder=" ">
+                                <label class="form-label">Your Email</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-input" required placeholder=" ">
+                            <label class="form-label">Subject</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea class="form-input" rows="5" required placeholder=" "></textarea>
+                            <label class="form-label">How can I help you?</label>
+                        </div>
+
+                        <button type="submit" class="btn-neon-submit">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
 
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer id="footer">
         <div class="container">
-            <div class="social-links">
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <div class="copyright">
+                &copy; 2024 <strong>Santiago Vega</strong>. All Rights Reserved.
             </div>
-            <p class="copyright">&copy; 2025 [Your Name]. Built from scratch.</p>
+            
         </div>
     </footer>
+
+    <div id="galleryModal" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+        <div id="lightboxCaption"></div>
+    </div>
 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
