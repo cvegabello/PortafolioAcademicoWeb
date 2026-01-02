@@ -28,6 +28,9 @@
     /* Imagen de Fondo (La Opción 2 ganadora) */
     --hero-bg-image: url('../assets/img/BackGround-hero.jpeg');
 
+    --hero-leftBackGround-image: url('../assets/img/profile-hero5.png');
+    
+
     /* Fuentes */
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Open Sans', sans-serif;
@@ -211,7 +214,7 @@ ul {
 
     /* --- CAMBIO DE LOOK --- */
     /* Degradado NEGRO (antes era azul oscuro) sobre la foto */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), 
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
                 var(--hero-bg-image);
 
     background-size: cover;
@@ -234,6 +237,7 @@ ul {
 /* Columna Izquierda (Texto) */
 .hero-text-col {
     text-align: left;
+        
 }
 
 .hero-text-col h1 {
@@ -357,12 +361,12 @@ ul {
 
 .hero-img-col img {
     width: 100%;
-    max-width: 420px;
+    max-width: 700px;
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(5, 117, 230, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    /* box-shadow: 0 0 30px rgba(5, 117, 230, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1); */
     animation: float 6s ease-in-out infinite;
-    margin-top: 80px;
+    margin-top: 10px;
 }
 
 /* Animación de flotar */
@@ -1838,4 +1842,50 @@ section {
 /* Busque su clase .gallery-card y asegúrese de que tenga cursor pointer */
 .gallery-card {
     cursor: zoom-in; /* El cursor se vuelve una lupa */
+}
+
+/* =========================================
+   EXPERIMENTO DE DISEÑO: FONDO EN COLUMNA IZQUIERDA
+   ========================================= */
+
+/* Esta es la clase "interruptor" que vamos a usar */
+.hero-text-bg-active {
+    /* 1. La Imagen de Fondo */
+    background-image: var(--hero-leftBackGround-image);
+    background-size: cover;      /* Que cubra todo el cuadro */
+    background-position: center; /* Centrada */
+    background-repeat: no-repeat;
+    
+    /* 2. Estructura de "Tarjeta" */
+    position: relative;
+    z-index: 1;
+    padding: 40px;              /* Espacio interno para que el texto no toque bordes */
+    border-radius: 20px;        /* Bordes redondeados */
+    border: 1px solid rgba(255, 94, 0, 0.3); /* Un borde neón sutil */
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);    /* Sombra para que flote */
+    
+    /* Transición suave por si quieres animarlo luego */
+    transition: all 0.3s ease;
+}
+
+/* 3. El Filtro Oscuro (Para que el texto se lea) */
+.hero-text-bg-active::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    
+    /* Degradado: Negro sólido a la izquierda -> Transparente a la derecha */
+    background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(0,0,0,0.6));
+    
+    border-radius: 20px;
+    z-index: -1; /* Se pone DETRÁS del texto pero DELANTE de la foto */
+}
+
+/* Ajuste Responsive: En celular quitamos el padding exagerado */
+@media (max-width: 768px) {
+    .hero-text-bg-active {
+        padding: 20px;
+        background-position: top center;
+    }
 }
