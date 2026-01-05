@@ -120,14 +120,14 @@
                 </p>
             
                 <div class="hero-buttons">
-                    <a href="#academics" class="btn primary">View Academics</a>
-                    <a href="#athletics" class="btn secondary">Watch Highlights</a>
+                    <a href="#about" class="btn primary">View Profile</a>
+                    <a href="#academics" class="btn secondary">View Academics</a>
                 </div>
             </div>
 
-            <div class="hero-img-col" data-aos="fade-left">
+            <!-- <div class="hero-img-col" data-aos="fade-left">
                 <img src="assets/img/profile-hero-right1.png" alt="Santiago Action Shot">
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -192,7 +192,6 @@
             <h2 class="section-title" style="text-align: center;">Academic Record</h2>
             
             <div class="academic-grid">
-                
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="stat-content">
                         <div class="stat-icon glow-blue"><i class="fas fa-book-open"></i></div>
@@ -245,28 +244,76 @@
 
             </div>
 
-            <div class="academic-actions" data-aos="fade-up" data-aos-delay="600">
-                <a href="assets/docs/resume.pdf" target="_blank" class="btn-neon-outline">
-                    <i class="fas fa-file-download"></i> Download Resume
-                </a>
-                <a href="assets/docs/transcripts.pdf" target="_blank" class="btn-neon-outline">
-                    <i class="fas fa-file-pdf"></i> View Transcripts
-                </a>
+            <div class="digital-locker" data-aos="fade-up">
+
+                <details class="locker-group">
+                    <summary>
+                        <span class="locker-title"><i class="fas fa-file-invoice"></i> Official Transcripts</span>
+                        <span class="locker-icon">+</span>
+                    </summary>
+                    <div class="locker-files">
+                        <a href="assets/docs/transcripts.pdf" target="_blank" class="file-link">
+                            <span>Academic Records (Full)</span>
+                            <i class="fas fa-download"></i>
+                        </a>
+                        </div>
+                </details>
+
+                <details class="locker-group">
+                    <summary>
+                        <span class="locker-title"><i class="fas fa-pen-alt"></i> Standardized Tests</span>
+                        <span class="locker-icon">+</span>
+                    </summary>
+                    <div class="locker-files">
+                        <a href="assets/docs/sat-score.pdf" target="_blank" class="file-link">
+                            <span>SAT Official Report</span>
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                </details>
+
+                <details class="locker-group">
+                    <summary>
+                        <span class="locker-title"><i class="fas fa-certificate"></i> Resume & Honors</span>
+                        <span class="locker-icon">+</span>
+                    </summary>
+                    <div class="locker-files">
+                        <a href="assets/docs/resume.pdf" target="_blank" class="file-link">
+                            <span>Official Athlete Resume</span>
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <a href="assets/docs/honor-roll.pdf" target="_blank" class="file-link">
+                            <span>Honor Roll Certificate</span>
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                </details>
+
             </div>
 
         </div>
     </section>
+    
 
     <section id="athletics" data-aos="fade-up">
         <div class="container">
             <h2 class="section-title">Athletics</h2>
+
             <div class="athletics-content">
+                
                 <div class="video-container">
-                    <div class="video-placeholder">
-                        <i class="fas fa-play-circle" style="font-size: 3rem;"></i>
-                        <p>2024 Season Highlights</p>
-                    </div>
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        /* 👇 AQUÍ PEGA EL ID DE SU VIDEO DE YOUTUBE 👇 */
+                        src="https://www.youtube.com/embed/TU_ID_AQUI" 
+                        title="Santiago Vega Highlights" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
+
                 <div class="ncsa-badge">
                     <h3>Recruiting Profile</h3>
                     <p>Official verified statistics, game logs, and coach evaluations available on NCSA.</p>
@@ -279,8 +326,98 @@
                         View NCSA Verified Profile <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
+
             </div>
+
+            
         </div>
+
+        <h2 class="extras-title">More Action & Training</h2>
+        
+        <div class="athletics-videos__swiper container swiper">
+            <div class="swiper-wrapper">
+                <article class="athletics-videos__card swiper-slide">
+                    <div class="neon-video-card">
+                        <div class="video-frame-box">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>Technical Drills1</h4>
+                            <p>Agility & Speed</p>
+                            <i class="fab fa-youtube yt-icon"></i>
+                        </div>  
+                    </div> 
+                </article>
+                <article class="athletics-videos__card swiper-slide">
+                    <div class="neon-video-card">
+                        <div class="video-frame-box">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>Technical Drills2</h4>
+                            <p>Agility & Speed</p>
+                            <i class="fab fa-youtube yt-icon"></i>
+                        </div>  
+                    </div> 
+                </article>
+                <article class="athletics-videos__card swiper-slide">
+                    <div class="neon-video-card">
+                        <div class="video-frame-box">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>Technical Drills3</h4>
+                            <p>Agility & Speed</p>
+                            <i class="fab fa-youtube yt-icon"></i>
+                        </div>  
+                    </div> 
+                </article>
+                <article class="athletics-videos__card swiper-slide">
+                    <div class="neon-video-card">
+                        <div class="video-frame-box">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>Technical Drills4</h4>
+                            <p>Agility & Speed</p>
+                            <i class="fab fa-youtube yt-icon"></i>
+                        </div>  
+                    </div> 
+                </article>
+                <article class="athletics-videos__card swiper-slide">
+                    <div class="neon-video-card">
+                        <div class="video-frame-box">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>Technical Drills5</h4>
+                            <p>Agility & Speed</p>
+                            <i class="fab fa-youtube yt-icon"></i>
+                        </div>  
+                    </div> 
+                </article>
+                <article class="athletics-videos__card swiper-slide">
+                    <div class="neon-video-card">
+                        <div class="video-frame-box">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>Technical Drills6</h4>
+                            <p>Agility & Speed</p>
+                            <i class="fab fa-youtube yt-icon"></i>
+                        </div>  
+                    </div> 
+                </article>
+            </div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- Navigation buttons -->
+            <div class="swiper-button-prev"><i class="ri-arrow-left-long-line"></i></div>
+            <div class="swiper-button-next"><i class="ri-arrow-right-long-line"></i></div>
+
+        </div>
+            
     </section>
 
     <section id="portfolio" data-aos="fade-up">
@@ -290,10 +427,9 @@
             <div class="swiper portfolioSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="flip-card card-glow">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front project-front">
-                                    <div class="glow-border"></div>
+                        <div class="flip-card">
+                            <div class="flip-card-inner"> <!-- La que lo hace voltear -->
+                                <div class="flip-card-front"> 
                                     
                                     <img src="assets/img/image_455095.jpg" alt="Project 1" class="project-img">
                                     

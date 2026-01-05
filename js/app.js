@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
         },
+        
 
         // --- SOLUCIÓN PUNTO 3 (PAUSA AL LEER) ---
         autoplay: {
@@ -65,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
             pauseOnMouseEnter: true, 
         }
     });
+
+
+    
 
     // 5. INICIALIZAR SWIPER DE PROYECTOS (PORTFOLIO)
     var portfolioSwiper = new Swiper(".portfolioSwiper", {
@@ -99,6 +103,49 @@ document.addEventListener('DOMContentLoaded', () => {
             pauseOnMouseEnter: true,
         }
     });
+
+
+    /* INICIALIZAR SWIPER ATHLETICS (COMPORTAMIENTO IDÉNTICO A PROYECTOS) */
+var swiperVideoAthetics = new Swiper(".athletics-videos__swiper", {
+    loop: true, // Pocos proyectos al inicio, mejor sin loop  
+    slidesPerView: "2", 
+    centeredSlides: "auto", 
+    spaceBetween: 2,
+    grabCursor: true,
+    speed: 600,
+    effect: 'coverflow',
+    
+       
+    coverflowEffect: {
+        rotate: -90,
+        depth: 600,
+        modifier: .5,
+        slideShadows: false,
+    },
+
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    
+    // Autoplay opcional, si quiere que se mueva solo o no
+    // Pausar si el reclutador quiere ver el código
+    autoplay: {
+        delay: 3000, // Un poquito más lento para leer
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+    },
+
+    
+    
+   
+    
+});
 
     // 6. CONTROL INTELIGENTE DE LAS TARJETAS (CLICK + AUTO-RESET)
     const cards = document.querySelectorAll('.flip-card');
@@ -203,3 +250,4 @@ function closeLightbox() {
         modal.style.display = "none";
     }, 300); // Esperar a que termine la animación
 }
+

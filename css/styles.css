@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
 /* =========================================
    1. VARIABLES Y CONFIGURACIÓN BASE (TEMA: DARK ORANGE)
    ========================================= */
@@ -26,9 +28,11 @@
     --nav-height: 80px;
     
     /* Imagen de Fondo (La Opción 2 ganadora) */
-    --hero-bg-image: url('../assets/img/BackGround-hero.jpeg');
+    /* --hero-bg-image: url('../assets/img/BackGround-hero.jpeg'); */
 
-    --hero-leftBackGround-image: url('../assets/img/profile-hero5.png');
+    --hero-bg-image: url('../assets/img/profile-hero5.png');
+
+    --hero-leftBackGround-image: url('../assets/img/BackGround-hero.jpeg');
     
 
     /* Fuentes */
@@ -214,7 +218,7 @@ ul {
 
     /* --- CAMBIO DE LOOK --- */
     /* Degradado NEGRO (antes era azul oscuro) sobre la foto */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)), 
                 var(--hero-bg-image);
 
     background-size: cover;
@@ -544,19 +548,111 @@ section {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 40px;
-    align-items: center;
+    
 }
 
 .video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
+    
+    
+    
+    overflow: visible;
     background: #000;
     border-radius: 12px;
     border: 2px solid var(--secondary-bg);
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
+
+.ncsa-badge {
+    background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-secondary);
+}
+
+/* 1. CONFIGURACIÓN COMÚN PARA AMBAS CAJAS */
+.video-container, 
+.ncsa-badge {
+    position: relative;
+    /* Quitamos los bordes viejos */
+    border: none !important; 
+    /* Fondo oscuro para que resalte el neón */
+    background: #b91212; 
+    /* CRUCIAL: Dejar salir el brillo (Glow) */
+    overflow: visible !important; 
+    z-index: 1;
+    border-radius: 15px; /* Aseguramos curvas modernas */
+    transition: transform 0.3s ease;
+    
+}
+
+/* 2. EL BORDE DEGRADADO (El Truco ::before) */
+/* Esto crea el marco de colores detrás de las cajas */
+.video-container::before,
+.ncsa-badge::before {
+    content: '';
+    position: absolute;
+    /* Grosor del borde: -2px hacia afuera */
+    inset: -2px; 
+    border-radius: 17px; /* Un poquito más grande que la caja */
+    
+    /* El Degradado: Azul Cían -> Azul -> Naranja */
+    background: linear-gradient(135deg, 
+        var(--accent-secondary), /* Azul */
+        #00f2ff,                 /* Cían */
+        var(--accent-color)      /* Naranja */
+    );
+    
+    z-index: -1; /* Se va para atrás */
+    opacity: 0.8; /* Que se vea vivo desde el principio */
+    transition: all 0.3s ease;
+}
+
+/* 3. HOVER: EFECTO DE ELEVACIÓN Y BRILLO */
+.video-container:hover, 
+.ncsa-badge:hover {
+    transform: translateY(-5px); /* Se levanta */
+}
+
+.video-container:hover::before,
+.ncsa-badge:hover::before {
+    opacity: 1;
+    /* Explosión de luz al pasar el mouse */
+    box-shadow: 
+        0 0 20px rgba(0, 68, 255, 0.6), /* Luz Azul */
+        0 0 40px rgba(255, 94, 0, 0.4); /* Luz Naranja */
+}
+
+/* =========================================
+   AJUSTES TÉCNICOS INTERNOS
+   ========================================= */
+
+/* Para el VIDEO: Asegurar que el iframe o placeholder respete las curvas
+   ya que le quitamos el overflow:hidden a la caja padre */
+.video-placeholder, 
+.video-container iframe {
+    border-radius: 15px; /* Mismas curvas que la caja */
+    overflow: visible;
+    width: 100%;
+    height: 100%;
+    /* Importante para que no tape el borde */
+    display: block;
+    z-index: 10; 
+}
+
+
+
+/* Para el NCSA BADGE: Ajustes visuales */
+.ncsa-badge {
+    /* Quitamos el borde izquierdo viejo que tenía */
+    border-left: none !important; 
+    padding: 30px;
+    height: 100%; /* Para que trate de igualar altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
 
 .video-placeholder {
     position: absolute;
@@ -865,6 +961,7 @@ section {
     height: 100%;
     perspective: 1000px;
     cursor: pointer;
+    z-index: 100
 }
 
 .flip-card-inner {
@@ -1511,6 +1608,7 @@ section {
     transition: transform 0.3s ease;
     background: transparent; /* Importante: transparente */
     z-index: 1; /* Establece el orden de pila */
+    background: linear-gradient(135deg, #00f2ff, #0044ff, #ff5e00);
 }
 
 .stat-card:hover {
@@ -1535,9 +1633,14 @@ section {
     animation: borderRotate 4s linear infinite; /* Animación continua */
     opacity: 0; /* Invisible al principio */
     transition: opacity 0.3s ease;
-    z-index: -2; /* Se va al fondo */
+    z-index: -1; /* Se va al fondo */
     top: -25%; /* Centrado manual aproximado para asegurar cobertura */
     left: -25%;
+    filter: brightness(1.5);
+}
+
+.stat-card:hover {
+    background: #222; 
 }
 
 /* Al pasar el mouse, prende la luz */
@@ -1554,7 +1657,7 @@ section {
 .stat-card::after {
     content: '';
     position: absolute;
-    inset: 2px; /* Grosor del borde */
+    inset: 3px; /* Grosor del borde */
     
     /* CAMBIO AQUÍ: En vez de color sólido, usamos RGBA con transparencia */
     /* 0,0,0 es negro. 0.85 es la opacidad (85% sólido, 15% transparente) */
@@ -1665,12 +1768,7 @@ section {
     background: rgba(255, 255, 255, 0.05); /* Se ilumina un tris el fondo */
 }
 
-/* 2. CAJAS DE ATHLETICS (Video y NCSA) */
-.video-container, 
-.ncsa-badge {
-    transition: all 0.4s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Asegurar borde base sutil */
-}
+
 
 /* Efecto al pasar el mouse por el Video */
 .video-container:hover {
@@ -1697,10 +1795,36 @@ section {
 .gallery-card {
     position: relative;
     border-radius: 15px;
-    overflow: hidden;
+    overflow: visible;
     background: #0a0a0a;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: none;
     height: 400px; /* Altura fija */
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+    z-index: 1; /* Para estar encima del borde trasero */
+}
+
+/* 2. EL BORDE DEGRADADO FINO (El Truco ::before) */
+.gallery-card::before {
+    content: '';
+    position: absolute;
+    
+    /* ESTO DEFINE EL GROSOR: -2px hace un borde fino hacia afuera */
+    inset: -2px; 
+    
+    border-radius: 17px; /* Un poquito más que la tarjeta para que encaje */
+    
+    /* El Degradado: Azul Cían -> Azul -> Naranja */
+    background: linear-gradient(135deg, 
+        #00f2ff,  /* Cían */
+        #0044ff,  /* Azul */
+        #ff5e00   /* Naranja */
+    );
+    
+    z-index: -1; /* Se pone detrás de la foto */
+    
+    /* Estado Normal: Un poco transparente */
+    opacity: 0.7; 
     transition: all 0.3s ease;
 }
 
@@ -1708,6 +1832,8 @@ section {
     width: 100%;
     height: 100%;
     position: relative;
+    border-radius: 15px; 
+    overflow: hidden; /* Aquí sí cortamos la imagen */
 }
 
 .gallery-img-box img {
@@ -1752,6 +1878,15 @@ section {
     transform: translateY(-5px);
 }
 .gallery-card:hover img { transform: scale(1.1); }
+
+.gallery-card:hover::before {
+    opacity: 1; /* Se prende a full color */
+    
+    /* El Glow (Brillo) hacia afuera */
+    box-shadow: 
+        0 0 15px rgba(0, 242, 255, 0.5), /* Resplandor Azul */
+        0 0 30px rgba(255, 94, 0, 0.4);  /* Resplandor Naranja */
+}
 
 /* =========================================
    ESTILOS DEL LIGHTBOX (VISOR DE FOTOS)
@@ -1838,11 +1973,7 @@ section {
     }
 }
 
-/* PEQUEÑO AJUSTE EXTRA: Cursor en la galería */
-/* Busque su clase .gallery-card y asegúrese de que tenga cursor pointer */
-.gallery-card {
-    cursor: zoom-in; /* El cursor se vuelve una lupa */
-}
+
 
 /* =========================================
    EXPERIMENTO DE DISEÑO: FONDO EN COLUMNA IZQUIERDA
@@ -1889,3 +2020,448 @@ section {
         background-position: top center;
     }
 }
+
+/* =========================================
+   DIGITAL LOCKER (ESTILO ACORDEÓN)
+   ========================================= */
+.digital-locker {
+    max-width: 700px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* El Cajón (Contenedor) */
+.locker-group {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.locker-group:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(255, 94, 0, 0.1);
+}
+
+.locker-group[open] {
+    background: #050505; 
+    border-color: var(--accent-color);
+}
+
+/* La Barra de Título */
+summary {
+    padding: 15px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none; 
+    user-select: none;
+}
+
+/* Chrome a veces pone un triangulo feo, esto lo quita */
+summary::-webkit-details-marker {
+    display: none;
+}
+
+.locker-title {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.locker-title i { color: var(--accent-color); }
+
+.locker-icon {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.locker-group[open] .locker-icon {
+    transform: rotate(45deg); /* Se vuelve una X */
+}
+
+/* Lista de Archivos */
+.locker-files {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.file-link {
+    padding: 15px 25px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.file-link:last-child { border-bottom: none; }
+
+.file-link:hover {
+    background: rgba(255, 94, 0, 0.1);
+    color: #fff;
+    padding-left: 35px;
+}
+
+.file-link i { opacity: 0.5; }
+.file-link:hover i { opacity: 1; color: var(--accent-color); }
+
+/* =========================================
+   CARRUSEL VIDEOS - ESTILO NEON PROJECTS
+   ========================================= */
+.athletics-extras {
+    
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+
+.extras-title {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 10px;
+    margin-top: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-align: center;
+}
+
+/* Swiper Container */
+.athletics-swiper {
+    padding-top: 20px;
+    padding-bottom: 60px;
+    width: 100%;
+}
+
+.athletics-swiper .swiper-slide {
+    width: 300px; /* Mismo ancho que Proyectos */
+    height: 420px; /* Alto suficiente para video + info */
+    transition: transform 0.3s;
+    /* Un poco de margen lateral para que respiren */
+    margin: 0 10px; 
+}
+
+
+/* --- LA TARJETA NEÓN (Tu diseño "Proyectos") --- */
+.neon-video-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    
+    
+    /* 1. FONDO NEGRO PURO (Como pediste) */
+    background: #050505; 
+    
+    /* 2. EL TRUCO DEL BORDE TRANSPARENTE */
+    border: 3px solid transparent; 
+    background-clip: padding-box; 
+
+    /* Transición suave para que no brinque */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Asegura que el brillo se vea */
+    transform-style: preserve-3d; 
+    
+    display: flex;
+    flex-direction: column;
+    overflow: visible; 
+    z-index: 1;
+}
+
+/* 3. EL DEGRADADO DE FONDO (El Borde Brillante) */
+.neon-video-card::after {
+    content: '';
+    position: absolute;
+    top: -3px; bottom: -3px; 
+    left: -3px; right: -3px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary), var(--accent-color));
+    z-index: -1; /* Se va para atrás */
+    border-radius: 22px; 
+    
+    /* EL BRILLO SUAVE (Como image_f9b0b5) */
+    box-shadow: 0 0 15px rgba(255, 94, 0, 0.3); 
+    transition: all 0.3s ease;
+}
+
+
+/* 3. EL BRILLO QUE EXPLOTA (El ::after) */
+/* Usamos !important por si algo lo está bloqueando */
+.neon-video-card:hover::after {
+    box-shadow: 0 0 40px var(--accent-color), 0 0 70px var(--accent-secondary) !important;
+    opacity: 1;
+}
+
+/* 4. MOVIMIENTO AL PASAR EL MOUSE */
+.neon-video-card:hover {
+    transform: translateY(-10px); /* Que flote un poquito */
+}
+
+
+
+
+
+/* --- VIDEO E INFORMACIÓN --- */
+.video-frame-box {
+    width: 100%;
+    height: 400px; /* Mitad video */
+    background: #000;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: relative; 
+}
+
+.video-frame-box iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: auto; /* Permitir click al Play */
+}
+
+.video-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    cursor:grab;
+}
+
+
+.video-info h4 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.video-info p {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Icono decorativo */
+.yt-icon {
+    font-size: 2rem;
+    color: #ff0000;
+    margin-top: 10px;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+
+
+
+/* =========================================
+   FIX FINAL: COMPORTAMIENTO IDÉNTICO A PROYECTOS
+   ========================================= */
+
+.athletics-extras {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+/* El contenedor permite que Swiper ponga la manito por defecto */
+.athletics-swiper {
+    padding-top: 20px;
+    padding-bottom: 60px;
+    width: 100%;
+    overflow: visible !important; /* Para que salga el brillo */
+}
+
+/* AJUSTE DE DIAPOSITIVAS */
+.athletics-swiper .swiper-slide {
+    width: 300px;
+    height: 420px;
+    transition: transform 0.3s;
+    margin: 0 10px;
+    /* Aquí NO ponemos cursor, dejamos que JS ponga la manito */
+}
+
+/* --- LA TARJETA (DISEÑO QUE TE GUSTA) --- */
+.neon-video-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #050505; 
+    border: 3px solid transparent; 
+    background-clip: padding-box; 
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    
+    /* Importante para suavizar el brillo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* EL GLOW (APAGADO POR DEFECTO) */
+.neon-video-card::after {
+    content: '';
+    position: absolute;
+    top: -3px; bottom: -3px; 
+    left: -3px; right: -3px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+    z-index: -1; 
+    border-radius: 22px; 
+    opacity: 0.5;
+    box-shadow: none; /* Sin brillo inicial */
+    transition: all 0.3s ease;
+}
+
+
+/*=============== ATHLETICS VIDEO CARD ===============*/
+.athletics-videos {
+  height: 300vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.athletics-videos__swiper {
+  padding-bottom: 7rem;
+}
+
+.athletics-videos__card {
+  width: 300px;
+  padding: 2rem 1.5rem 3rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  height: 480px; /* Alto suficiente para video + info */
+  transition: transform 0.3s;
+    /* Un poco de margen lateral para que respiren */
+  margin: 0 10px; 
+
+}
+
+/* =========================================
+   CORRECCIÓN FINAL: ATHLETICS NEON BOXES
+   ========================================= */
+
+/* 1. CONFIGURACIÓN DEL CONTENEDOR (Transparente) */
+
+.ncsa-badge {
+    position: relative;
+    border: none !important; 
+    /* IMPORTANTE: Fondo transparente para que los pseudos trabajen */
+    background: transparent !important; 
+    overflow: visible !important; 
+    z-index: 1;
+    border-radius: 15px; 
+    transition: transform 0.3s ease;
+}
+
+/* 2. CAPA 1: EL NEÓN (Al fondo del todo) */
+
+.ncsa-badge::before {
+    content: '';
+    position: absolute;
+    /* Se sale 2px para hacer el borde */
+    inset: -2px; 
+    border-radius: 17px; 
+    background: linear-gradient(135deg, var(--accent-secondary), #00f2ff, var(--accent-color));
+    
+    z-index: -2; /* Súper atrás */
+    
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+/* 3. CAPA 2: EL FONDO NEGRO (En el medio) */
+/* Esto es lo que faltaba: Una tapa negra para cubrir el centro */
+
+.ncsa-badge::after {
+    content: '';
+    position: absolute;
+    /* Cubre exactamente el área de la tarjeta */
+    inset: 0; 
+    border-radius: 15px;
+    background: #0a0a0a; /* El color de fondo de la tarjeta */
+    
+    z-index: -1; /* Detrás del texto, pero delante del neón */
+}
+
+/* 4. HOVER: EFECTOS */
+
+.ncsa-badge:hover {
+    transform: translateY(-5px);
+}
+
+
+.ncsa-badge:hover::before {
+    opacity: 1;
+    box-shadow: 
+        0 0 20px rgba(0, 68, 255, 0.6), 
+        0 0 40px rgba(255, 94, 0, 0.4);
+}
+
+
+
+.ncsa-badge {
+    border-left: none !important; 
+    padding: 30px;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Asegurar que el texto del perfil esté por encima del fondo negro */
+.ncsa-badge h3, 
+.ncsa-badge p, 
+.ncsa-badge ul, 
+.ncsa-badge a {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================
+   FIX DE EMERGENCIA: CAJA DE VIDEO SÓLIDA
+   ========================================= */
+
+/* 1. Forzar el "Jamón" (Fondo Negro) para que tape el degradado */
+.video-container::after {
+    content: '';
+    position: absolute;
+    inset: 0; /* Llenar todo el espacio */
+    background: #000000 !important; /* Negro Puro Obligatorio */
+    border-radius: 15px;
+    z-index: -1; /* Ponerlo DETRÁS del video pero ADELANTE del neón */
+}
+
+/* 2. Asegurar que el Neón se quede atrás */
+.video-container::before {
+    z-index: -2 !important; 
+}
+
+/* 3. Asegurar que el video esté encima de todo */
+.video-container iframe {
+    position: relative;
+    z-index: 2 !important;
+}
+
+
+
+
