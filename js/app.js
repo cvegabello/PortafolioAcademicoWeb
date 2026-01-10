@@ -296,25 +296,5 @@ if (contactForm) {
     });
 }
 
-/* =========================================
-   FLIP CARDS EN CELULAR (TOQUE PARA GIRAR)
-   ========================================= */
 
-// Seleccionamos todas las tarjetas que giran
-const flipCards = document.querySelectorAll('.flip-card');
-
-flipCards.forEach(card => {
-    card.addEventListener('click', function () {
-        // 1. Si la tarjeta ya está girada, la devolvemos
-        if (this.classList.contains('is-flipped')) {
-            this.classList.remove('is-flipped');
-        } else {
-            // 2. (Opcional) Si quieres que se cierren las otras al abrir una nueva:
-            flipCards.forEach(c => c.classList.remove('is-flipped'));
-            
-            // 3. Giramos la que tocamos
-            this.classList.add('is-flipped');
-        }
-    });
-});
 

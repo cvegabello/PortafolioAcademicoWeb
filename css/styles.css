@@ -1011,7 +1011,8 @@ section {
     height: 100%;
     perspective: 1000px;
     cursor: pointer;
-    z-index: 100
+    background-color: transparent;
+    
 }
 
 .flip-card-inner {
@@ -1023,13 +1024,15 @@ section {
     transform-style: preserve-3d;
 }
 
-/* 2. LÓGICA DE GIRO (MOUSE VS DEDO) */
-
-/* OPCIÓN A: EN COMPUTADOR (Con Mouse) */
-/* Usamos @media (hover: hover) para que esto SOLO funcione si hay mouse */
+/* ESCENARIO A: COMPUTADORES (Solo si tiene mouse) */
 @media (hover: hover) {
     .flip-card:hover .flip-card-inner {
         transform: rotateY(180deg);
+    }
+    
+    /* Efecto extra de brillo solo en PC */
+    .flip-card:hover .flip-card-front::after {
+        box-shadow: 0 0 40px var(--accent-color), 0 0 80px var(--accent-secondary);
     }
 }
 
@@ -1052,9 +1055,8 @@ section {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    top: 0;
+    top: 0; 
     left: 0;
-    z-index: 2; /* Asegura que la capa esté sólida */
     
     /* FONDO NEGRO PURO para contraste */
     background: #050505; 
@@ -1062,6 +1064,7 @@ section {
     /* EL BORDE NEÓN (Truco del borde transparente) */
     border: 3px solid transparent; /* Espacio para el degradado */
     background-clip: padding-box; /* El fondo negro se queda adentro */
+    
 }
 
 /* --- EFECTO DEGRADADO EN LOS BORDES (TIPO IMAGE_45D456) --- */
@@ -1129,7 +1132,7 @@ section {
     transform: rotateY(180deg);
     /* Fondo un poquito diferente para distinguir */
     background: linear-gradient(to bottom, #000, #111);
-    z-index: 1; /* Un nivel más abajo al inicio */
+    z-index: 1;
 }
 
 /* El borde de atrás también debe ser neón pero quizás invertido */
