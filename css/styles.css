@@ -2548,10 +2548,11 @@ summary::-webkit-details-marker {
    ========================================= */
 
 .nav-logo-img {
-    height: 35px; /* Ajusta este número según el grosor de tu barra (50px - 70px) */
+    height: 70px; /* Ajusta este número según el grosor de tu barra (50px - 70px) */
     width: auto;  /* Mantiene la proporción para que no se estire */
     vertical-align: middle;
     transition: transform 0.3s ease, filter 0.3s ease;
+    background-origin: var(--primary-bg);
 }
 
 /* Efecto al pasar el mouse por el logo */
