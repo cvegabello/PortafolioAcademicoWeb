@@ -14,6 +14,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 </head>
 <body>
 
@@ -64,6 +65,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="#testimonials" onclick="toggleMenu()">
+                        <div class="menu-icon-box"><i class="fas fa-code"></i></div>
+                        <span>References</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#gallery" onclick="toggleMenu()">
                         <div class="menu-icon-box"><i class="fas fa-camera-retro"></i></div>
                         <span>Moments</span>
@@ -83,7 +90,10 @@
     <header id="main-header">
     <nav class="navbar">
         <div class="logo">
-            <a href="#hero">&lt;[SV]/&gt;</a> </div> 
+            <a href="#hero">
+                <img src="../assets/img/logoSanti.png" alt="Santiago Vega Logo" class="nav-logo-img">
+            </a>
+        </div>
         
         <button class="hamburger-menu" aria-label="Toggle Menu" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
@@ -286,6 +296,28 @@
                             <span>Honor Roll Certificate</span>
                             <i class="fas fa-download"></i>
                         </a>
+                    </div>
+                </details>
+
+                <details class="locker-group">
+                    <summary>
+                        <span class="locker-title">
+                            <i class="fas fa-video"></i> Leadership & Volunteering
+                        </span>
+                        <span class="locker-icon">+</span>
+                    </summary>
+                    
+                    <div class="locker-files">
+                        
+                        <a href="https://youtu.be/SU_ID_VIDEO" target="_blank" class="file-link">
+                            <span>Community Service Project (Video)</span>
+                            <i class="fas fa-play-circle"></i> </a>
+
+                        <a href="https://youtu.be/SU_ID_VIDEO" target="_blank" class="file-link">
+                            <span>School Speech / Presentation</span>
+                            <i class="fas fa-play-circle"></i>
+                        </a>
+
                     </div>
                 </details>
 
@@ -734,29 +766,30 @@
                 </div>
 
                 <div class="contact-form-col" data-aos="fade-left">
-                    <form class="black-ops-form">
+                    <form class="black-ops-form" id="contactForm">
+                        
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="text" class="form-input" required placeholder=" ">
+                                <input type="text" name="from_name" class="form-input" required placeholder=" ">
                                 <label class="form-label">Your Name</label>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-input" required placeholder=" ">
+                                <input type="email" name="from_email" class="form-input" required placeholder=" ">
                                 <label class="form-label">Your Email</label>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <input type="text" class="form-input" required placeholder=" ">
+                            <input type="text" name="subject" class="form-input" required placeholder=" ">
                             <label class="form-label">Subject</label>
                         </div>
                         
                         <div class="form-group">
-                            <textarea class="form-input" rows="5" required placeholder=" "></textarea>
+                            <textarea name="message" class="form-input" rows="5" required placeholder=" "></textarea>
                             <label class="form-label">How can I help you?</label>
                         </div>
 
-                        <button type="submit" class="btn-neon-submit">
+                        <button type="submit" class="btn-neon-submit" id="btnSubmit">
                             Send Message <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
@@ -784,6 +817,7 @@
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="js/app.js"></script>
     
 </body>

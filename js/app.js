@@ -251,3 +251,48 @@ function closeLightbox() {
     }, 300); // Esperar a que termine la animación
 }
 
+/* =========================================
+   CONTACT FORM (EMAILJS) - FINAL
+   ========================================= */
+
+// 1. INICIALIZAR: PEGA AQUÍ TU PUBLIC KEY
+// (Es la llave larga que sacaste de "Account")
+emailjs.init("8utUPQYBhRlCDGx4l"); 
+
+const contactForm = document.getElementById('contactForm');
+const btnSubmit = document.getElementById('btnSubmit');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita que la página se recargue sola
+
+        // Cambiar texto del botón para que el usuario sepa que está cargando
+        const originalBtnText = btnSubmit.innerHTML;
+        btnSubmit.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+        
+        // 2. CONFIGURAR: PEGA AQUÍ TUS IDs
+        // (El Service ID de Gmail y el Template ID que acabas de crear)
+        const serviceID = 'service_ihytesn'; 
+        const templateID = 'template_mti0sre';
+
+        // Enviar el formulario
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                // SI TODO SALE BIEN:
+                alert('¡Message Sent! Santiago will reply soon. 🚀');
+                btnSubmit.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
+                contactForm.reset(); // Borra lo que escribió el usuario
+                
+                // Volver el botón a la normalidad después de 3 segundos
+                setTimeout(() => {
+                    btnSubmit.innerHTML = originalBtnText;
+                }, 3000);
+            }, (err) => {
+                // SI HAY ERROR:
+                alert('Oops... something went wrong. Please try again.');
+                btnSubmit.innerHTML = originalBtnText;
+                console.error('EmailJS Error:', err); // Muestra el error en la consola (F12)
+            });
+    });
+}
+
