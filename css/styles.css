@@ -1009,6 +1009,7 @@ section {
 .flip-card {
     width: 100%;
     height: 100%;
+    -webkit-perspective: 1000px;
     perspective: 1000px;
     cursor: pointer;
     background-color: transparent;
@@ -1021,6 +1022,7 @@ section {
     height: 100%;
     text-align: center;
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
@@ -1042,6 +1044,12 @@ section {
     transform: rotateY(180deg);
 }
 
+.flip-card-front {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+
 /* --- CARAS (CONFIGURACIÓN COMÚN) --- */
 .flip-card-front, .flip-card-back {
     position: absolute;
@@ -1049,6 +1057,7 @@ section {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+        
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -1057,13 +1066,16 @@ section {
     padding: 20px;
     top: 0; 
     left: 0;
+
+    background: transparent; 
+    border: none;
     
     /* FONDO NEGRO PURO para contraste */
-    background: #050505; 
+    /* background: #050505; 
     
     /* EL BORDE NEÓN (Truco del borde transparente) */
-    border: 3px solid transparent; /* Espacio para el degradado */
-    background-clip: padding-box; /* El fondo negro se queda adentro */
+    /* border: 3px solid transparent; Espacio para el degradado */
+    /* background-clip: padding-box; El fondo negro se queda adentro */ */
     
 }
 
@@ -1076,7 +1088,7 @@ section {
     top: -5px; bottom: -5px;
     left: -5px; right: -5px;
     background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary), var(--accent-color));
-    z-index: -1; /* Se va para atrás */
+    z-index: -2; /* Se va para atrás */
     border-radius: 24px; /* Un poco más que la tarjeta */
     
     /* ESTO ES LO QUE HACE QUE BRILLE (La Sombrita) */
@@ -1089,6 +1101,26 @@ section {
     box-shadow: 0 0 40px var(--accent-color), 0 0 80px var(--accent-secondary);
     filter: blur(2px); /* Suaviza el borde para que parezca luz */
 }
+
+/* 3. CAPA DEL MEDIO: El Fondo Negro Sólido (Nuevo ::before) */
+/* Creamos una capa negra explícita detrás del texto */
+.flip-card-front::before, .flip-card-back::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* Aquí va el color negro de la tarjeta */
+    background: #050505; 
+    
+    border-radius: 20px;
+    z-index: -1; /* Se pone DETRÁS del texto */
+}
+
+/* Ajuste para el fondo de la tarjeta de atrás (opcional) */
+.flip-card-back::before {
+    background: linear-gradient(to bottom, #050505, #111);
+}
+
 
 /* --- CONTENIDO INTERNO --- */
 .card-avatar {
@@ -1129,9 +1161,8 @@ section {
 
 /* --- CARA DE ATRÁS --- */
 .flip-card-back {
-    transform: rotateY(180deg);
-    /* Fondo un poquito diferente para distinguir */
-    background: linear-gradient(to bottom, #000, #111);
+    -webkit-transform: rotateY(180deg) translate3d(0,0,0);
+    transform: rotateY(180deg) translate3d(0,0,0);
     z-index: 1;
 }
 
