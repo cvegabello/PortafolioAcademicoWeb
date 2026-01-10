@@ -1023,6 +1023,16 @@ section {
     transform-style: preserve-3d;
 }
 
+/* 2. LÓGICA DE GIRO (MOUSE VS DEDO) */
+
+/* OPCIÓN A: EN COMPUTADOR (Con Mouse) */
+/* Usamos @media (hover: hover) para que esto SOLO funcione si hay mouse */
+@media (hover: hover) {
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+}
+
 /* GIRO */
 /* 2. AGREGAR ESTA NUEVA (Solo gira si tiene la clase 'is-flipped') */
 .flip-card.is-flipped .flip-card-inner {
@@ -1042,6 +1052,9 @@ section {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    top: 0;
+    left: 0;
+    z-index: 2; /* Asegura que la capa esté sólida */
     
     /* FONDO NEGRO PURO para contraste */
     background: #050505; 
@@ -1116,6 +1129,7 @@ section {
     transform: rotateY(180deg);
     /* Fondo un poquito diferente para distinguir */
     background: linear-gradient(to bottom, #000, #111);
+    z-index: 1; /* Un nivel más abajo al inicio */
 }
 
 /* El borde de atrás también debe ser neón pero quizás invertido */
@@ -2569,4 +2583,170 @@ summary::-webkit-details-marker {
     }
 }
 
+/* =========================================
+   MEJORAS VISUALES - ATHLETICS 2.0
+   ========================================= */
+
+/* 1. Estilo para la Caja de Descripción del Video Principal */
+.neon-video-wrapper {
+    background: #0b0b0b; /* Fondo oscuro */
+    border: 1px solid rgba(0, 242, 255, 0.3);
+    border-radius: 15px;
+    overflow: hidden; /* Para que nada se salga de las esquinas redondas */
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.neon-video-wrapper:hover {
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+    border-color: rgba(0, 242, 255, 0.6);
+}
+
+.main-video-desc {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Texto a la izq, botón a la der */
+    align-items: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(20,20,20,0.95));
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.desc-content h3 {
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.desc-content p {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Botón de texto "Ver más" */
+.btn-text-neon {
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    white-space: nowrap; /* Que no se parta en dos líneas */
+    transition: color 0.3s ease;
+}
+
+.btn-text-neon:hover {
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* Animación de rebote para la flechita */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-5px);}
+    60% {transform: translateY(-3px);}
+}
+.bounce {
+    animation: bounce 2s infinite;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+/* 2. Ajustes para celulares (Responsive) */
+@media (max-width: 768px) {
+    .main-video-desc {
+        flex-direction: column; /* Uno debajo del otro en celular */
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+/* 3. Espaciado de la Nueva Sección */
+.training-section {
+    padding: 80px 0; /* Buen espacio arriba y abajo */
+    background-color: #050505; /* Un negro un pelín diferente o el mismo fondo */
+    /* Opcional: Ponerle un fondo sutil diferente */
+    /* background-image: url('assets/images/fondo-training.jpg'); */ 
+}
+
+
+/* =========================================
+   ATHLETICS 2.0 - FIX DE DISEÑO
+   ========================================= */
+
+/* 1. Ajustes para la Tarjeta PRINCIPAL (Video Grande) */
+.main-card-style {
+    height: 100%; /* Que ocupe toda la altura disponible */
+    min-height: 450px; /* Altura mínima para que se vea imponente */
+}
+
+/* El cuadro del video principal debe ser un poco más alto que los del carrusel */
+.main-frame {
+    height: 350px; /* Ajuste visual para video principal */
+}
+
+/* Ajuste de la info del video principal (Video + Botón en la misma fila) */
+.main-info-row {
+    flex-direction: row !important; /* Poner texto y botón lado a lado */
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    text-align: left;
+}
+
+.info-text h4 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+/* 2. El Botón "More Action" dentro de la tarjeta */
+.btn-jump-link {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Que no se parta el texto */
+}
+
+.btn-jump-link:hover {
+    background: var(--accent-color);
+    color: #000;
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* Animación de la flechita */
+.bounce {
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(3px);}
+    60% {transform: translateY(1px);}
+}
+
+/* 3. Separación de Secciones */
+.training-section {
+    /* Un fondo ligeramente diferente o el mismo, pero separado */
+    padding-top: 50px;
+    padding-bottom: 100px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Línea sutil divisora */
+    background: rgba(0,0,0,0.3); /* Un poco más oscuro para diferenciar */
+}
+
+/* 4. RESPONSIVE (Celular) */
+@media (max-width: 768px) {
+    .main-info-row {
+        flex-direction: column !important; /* En celular, uno debajo del otro */
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .main-frame {
+        height: 250px; /* Menos altura en celular */
+    }
+}
 
