@@ -22,28 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ... (Debajo de tu código de Typed.js y AOS) ...
 
-    // 4. INICIALIZAR SWIPER (Versión Pulida y Senior) --- ACTUALIZADO ---
+    // 4. INICIALIZAR SWIPER (REFERENCIAS)
     var swiper = new Swiper(".mySwiper", {
         effect: "coverflow",
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: "auto",
-
-        // --- SOLUCIÓN PUNTO 2 (POCAS REFERENCIAS) ---
-        // Cambiamos LOOP a FALSE. Ya no necesitamos duplicar tarjetas en el HTML.
-        // (Vuelvan a dejar solo las 3 originales en index.html)
         loop: false, 
-        
-        // Obligamos a que empiece en la segunda tarjeta (índice 1) para que esté centrada
         initialSlide: 1, 
 
-        // --- SOLUCIÓN PUNTO 1 (ROTACIÓN ESTILO "REAL CAROUSEL") ---
         coverflowEffect: {
-            rotate: 50,         // Aumentamos el ángulo de giro (antes 35)
-            stretch: -50,       // Solapamos un poco las tarjetas (-50) para efecto curvo
-            depth: 200,         // Más profundidad 3D (antes 100)
+            rotate: 50,
+            stretch: -50,
+            depth: 200,
             modifier: 1,
-            slideShadows: true, // Sombras realistas en las laterales
+            slideShadows: true,
         },
 
         pagination: {
@@ -56,14 +49,20 @@ document.addEventListener('DOMContentLoaded', () => {
             prevEl: ".swiper-button-prev",
         },
         
+        // 🚨 CAMBIO AQUÍ: EN CELULAR QUIETO (Manual)
+        autoplay: false,
 
-        // --- SOLUCIÓN PUNTO 3 (PAUSA AL LEER) ---
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-            // *** ESTA ES LA MAGIA ***
-            // Detiene el carrusel cuando el mouse entra a leer/voltear
-            pauseOnMouseEnter: true, 
+        // 🚨 CONFIGURACIÓN SOLO PARA PC (Pantallas grandes)
+        breakpoints: {
+            768: { // Si la pantalla es mayor a 1024px (Laptop/PC)
+                initialSlide: 1, 
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true, // Aquí sí funciona el mouse
+                    enabled: true
+                }
+            }
         }
     });
 
@@ -76,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: "auto",
-        loop: false, // Pocos proyectos al inicio, mejor sin loop
-        initialSlide: 1, // Empieza en el del medio
+        loop: false, 
+        initialSlide: 1, 
 
         coverflowEffect: {
-            rotate: 40,        // Un poco menos de rotación para ver mejor las fotos
+            rotate: 40,
             stretch: 0,
             depth: 100,
             modifier: 1,
@@ -96,56 +95,71 @@ document.addEventListener('DOMContentLoaded', () => {
             prevEl: ".swiper-button-prev",
         },
         
-        // Pausar si el reclutador quiere ver el código
-        autoplay: {
-            delay: 4000, // Un poquito más lento para leer
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
+        // 🚨 CELULAR: QUIETO
+        autoplay: false,
+
+        // 🚨 PC: MOVIMIENTO INTELIGENTE
+        breakpoints: {
+            768: {
+                autoplay: {
+                    delay: 4000, 
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                    enabled: true // 🚨 Forzamos el encendido
+                }
+            }
         }
     });
 
 
-    /* INICIALIZAR SWIPER ATHLETICS (COMPORTAMIENTO IDÉNTICO A PROYECTOS) */
-var swiperVideoAthetics = new Swiper(".athletics-videos__swiper", {
-    loop: true, // Pocos proyectos al inicio, mejor sin loop  
-    slidesPerView: "2", 
-    centeredSlides: "auto", 
-    spaceBetween: 2,
-    grabCursor: true,
-    speed: 600,
-    effect: 'coverflow',
-    
-       
-    coverflowEffect: {
-        rotate: -90,
-        depth: 600,
-        modifier: .5,
-        slideShadows: false,
-    },
+    /* INICIALIZAR SWIPER ATHLETICS */
+    var swiperVideoAthetics = new Swiper(".athletics-videos__swiper", {
+        loop: true,   
+        slidesPerView: "2", 
+        centeredSlides: "auto", 
+        spaceBetween: 2,
+        grabCursor: true,
+        speed: 600,
+        effect: 'coverflow',
+        
+        coverflowEffect: {
+            rotate: -90,
+            depth: 600,
+            modifier: .5,
+            slideShadows: false,
+        },
 
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-    
-    // Autoplay opcional, si quiere que se mueva solo o no
-    // Pausar si el reclutador quiere ver el código
-    autoplay: {
-        delay: 3000, // Un poquito más lento para leer
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-    },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        
+        // 🚨 CELULAR: QUIETO
+        autoplay: false,
 
-    
-    
-   
-    
-});
+        // 🚨 PC: MOVIMIENTO AUTOMÁTICO
+        breakpoints: {
+            768: {
+                slidesPerView: "2", // Mantenemos la vista
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                    enabled: true // 🚨 Forzamos el encendido
+                }
+            },
+            // Ajuste extra para móviles (opcional, para que se vea 1 sola tarjeta si quieres)
+            320: {
+                slidesPerView: 1,
+                autoplay: false
+            }
+        }
+    });
 
     // 6. CONTROL INTELIGENTE DE LAS TARJETAS (CLICK + AUTO-RESET)
     const cards = document.querySelectorAll('.flip-card');
